@@ -1,7 +1,17 @@
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
+let abortController = null;
+
 export const getJobOpeningsData = async () => {
+  if (abortController) {
+    abortController.abort();
+  }
+
+  abortController = new AbortController();
+
+  const { signal } = abortController;
+
   const body = JSON.stringify({
     limit: 10,
     offset: 0,
@@ -11,6 +21,7 @@ export const getJobOpeningsData = async () => {
     method: "POST",
     headers: myHeaders,
     body,
+    signal,
   };
 
   try {
