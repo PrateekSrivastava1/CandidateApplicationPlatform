@@ -1,11 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { getJobOpeningsData } from "./api";
 import Card from "../../components/Card";
 
 const HomePage = () => {
+  const [jobData, setJobData] = useState([]);
+
   useEffect(() => {
-    getJobOpeningsData();
+    const fetchData = async () => {
+      const data = await getJobOpeningsData();
+      if (data) setJobData(data.jdList);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -13,23 +19,34 @@ const HomePage = () => {
       style={{
         display: "flex",
         paddingTop: "50px",
-        width: "100%",
         justifyContent: "center",
         height: "100vh",
+        width: "100%",
       }}
     >
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: "20px",
-          width: "80%",
         }}
       >
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {jobData &&
+          jobData.map((job, index) => (
+            <Card
+              key={index}
+              jdLink={job.jdLink}
+              jobDetailsFromCompany={job.jobDetailsFromCompany}
+              logoUrl={job.logoUrl}
+              companyName={job.companyName}
+              jobRole={job.jobRole}
+              location={job.location}
+              minJdSalary={job.minJdSalary}
+              maxJdSalary={job.maxJdSalary}
+              salaryCurrencyCode={job.salaryCurrencyCode}
+              minExp={job.minJdSalary}
+            />
+          ))}
       </div>
     </div>
   );
