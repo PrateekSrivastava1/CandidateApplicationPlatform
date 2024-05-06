@@ -113,7 +113,7 @@ const Card = ({
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <a href={jdLink}>
+        <a href={jdLink} target="_blank">
           <button style={cardCSSStyle.applyButton}>Easy Apply</button>
         </a>
         <button style={cardCSSStyle.referralButton}>

@@ -3,7 +3,7 @@ myHeaders.append("Content-Type", "application/json");
 
 let abortController = null;
 
-export const getJobOpeningsData = async () => {
+export const getJobOpeningsData = async (offset) => {
   if (abortController) {
     abortController.abort();
   }
@@ -14,7 +14,7 @@ export const getJobOpeningsData = async () => {
 
   const body = JSON.stringify({
     limit: 10,
-    offset: 0,
+    offset: offset,
   });
 
   const requestOptions = {
@@ -33,7 +33,6 @@ export const getJobOpeningsData = async () => {
       throw new Error("HTTP error! status: ${response.status}");
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
