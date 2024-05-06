@@ -36,16 +36,15 @@ const Filters = ({ selectedFilters, setSelectedFilters }) => {
       ))}
       <input
         type="text"
-        placeholder="Filter by company name"
+        placeholder="Company name"
         value={
           selectedFilters.companyName ? selectedFilters.companyName.value : ""
         }
         onChange={handleCompanyNameChange}
         style={{
-          marginTop: "10px",
           border: "1px solid #D3D3D3",
           borderRadius: "3px",
-          paddingLeft: "5px",
+          padding: "5px",
         }}
       />
     </>
