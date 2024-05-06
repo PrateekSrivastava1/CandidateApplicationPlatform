@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 
-import { getJobOpeningsData } from "./api";
 import Card from "../../components/Card";
+
+import { getJobOpeningsData } from "./api";
+import Filters from "../../components/Filters";
+import { getFilteredData } from "../../utils";
 
 const HomePage = () => {
   const [jobData, setJobData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   const fetchData = async (offset) => {
     setLoading(true);
-    if (offset >= totalCount) {
+    if (totalCount != 0 && offset >= totalCount) {
       return;
     }
     const data = await getJobOpeningsData(offset);
@@ -43,16 +48,41 @@ const HomePage = () => {
     };
   }, [offset, loading]);
 
+  useEffect(() => {
+    setFilteredData(getFilteredData(jobData, selectedFilters));
+  }, [selectedFilters, jobData]);
+
+  // console.log("filteredData: ", filteredData);
+
   return (
     <div
       style={{
         display: "flex",
-        paddingTop: "50px",
         justifyContent: "center",
-        height: "100vh",
-        width: "100%",
+        alignItems: "center",
+        paddingTop: "50px",
+        paddingBottom: "50px",
+        flexDirection: "column",
       }}
     >
+      {/* ---------------filters-------------- */}
+
+      <div
+        style={{
+          gap: "10px",
+          display: "flex",
+          flexDirection: "row",
+          margin: "50px 0 50px 0",
+          // width: "100%",
+        }}
+      >
+        <Filters
+          selectedFilters={selectedFilters}
+          setSelectedFilters={setSelectedFilters}
+        />
+      </div>
+
+      {/* ------------------------------------- */}
       <div
         style={{
           display: "grid",
@@ -60,7 +90,7 @@ const HomePage = () => {
           gap: "20px",
         }}
       >
-        {jobData.map((job, index) => (
+        {filteredData.map((job, index) => (
           <Card
             key={index}
             jdLink={job.jdLink}
@@ -72,7 +102,7 @@ const HomePage = () => {
             minJdSalary={job.minJdSalary}
             maxJdSalary={job.maxJdSalary}
             salaryCurrencyCode={job.salaryCurrencyCode}
-            minExp={job.minJdSalary}
+            minExp={job.minExp}
           />
         ))}
       </div>

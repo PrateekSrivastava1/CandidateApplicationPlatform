@@ -13,7 +13,7 @@ export const getJobOpeningsData = async (offset) => {
   const { signal } = abortController;
 
   const body = JSON.stringify({
-    limit: 10,
+    limit: 9,
     offset: offset,
   });
 
