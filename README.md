@@ -1,4 +1,4 @@
-Candidate Application Platform
+# Candidate Application Platform
 
 ## Installation
 
