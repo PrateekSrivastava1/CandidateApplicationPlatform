@@ -23,7 +23,7 @@ const HomePage = () => {
     const data = await getJobOpeningsData(offset);
     if (data) {
       setJobData((prevJobData) => [...prevJobData, ...data.jdList]);
-      setOffset((prevOffset) => prevOffset + 10);
+      setOffset((prevOffset) => prevOffset + 9);
       setTotalCount(data.totalCount);
     }
     setLoading(false);
