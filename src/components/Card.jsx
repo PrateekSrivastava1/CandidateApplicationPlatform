@@ -1,27 +1,7 @@
 import React from "react";
 
 import { convertFirstLetterToUpperCase } from "../utils";
-
-const cardCSSStyle = {
-  applyButton: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "7px",
-    border: "1px solid transparent",
-    backgroundColor: "#82e8b8",
-    fontWeight: 650,
-    curson: "pointer",
-  },
-  referralButton: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "7px",
-    border: "1px solid transparent",
-    backgroundColor: "#4228c7",
-    color: "white",
-    curson: "pointer",
-  },
-};
+import { CardCSSStyle } from "../constants";
 
 const Card = ({
   jdLink,
@@ -36,32 +16,8 @@ const Card = ({
   minExp,
 }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "300px",
-        height: "560px",
-        backgroundColor: "white",
-        borderBlockColor: "1px solid black",
-        borderRadius: "15px",
-        padding: "20px",
-        boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-        textAlign: "left",
-      }}
-    >
-      <p
-        style={{
-          borderRadius: "20px",
-          fontSize: "x-small",
-          padding: "0 0 2px 10px",
-          width: "35%",
-          boxShadow:
-            "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
-        }}
-      >
-        Posted 10 days ago
-      </p>
+    <div style={CardCSSStyle.parentContainer}>
+      <p style={CardCSSStyle.postedText}>Posted 10 days ago</p>
       <div style={{ display: "flex", flexDirection: "row", columnGap: "15px" }}>
         <img
           src={logoUrl}
@@ -114,9 +70,9 @@ const Card = ({
 
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <a href={jdLink} target="_blank">
-          <button style={cardCSSStyle.applyButton}>Easy Apply</button>
+          <button style={CardCSSStyle.applyButton}>Easy Apply</button>
         </a>
-        <button style={cardCSSStyle.referralButton}>
+        <button style={CardCSSStyle.referralButton}>
           Unlock referral asks
         </button>
       </div>

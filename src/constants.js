@@ -269,3 +269,68 @@ export const dropdownConfigs = [
     placeholder: "Minimum Base Salary",
   },
 ];
+
+export const CardCSSStyle = {
+  parentContainer: {
+    display: "flex",
+    flexDirection: "column",
+    width: "300px",
+    height: "560px",
+    backgroundColor: "white",
+    borderBlockColor: "1px solid black",
+    borderRadius: "15px",
+    padding: "20px",
+    boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+    textAlign: "left",
+    marginBottom: "40px",
+  },
+  postedText: {
+    borderRadius: "20px",
+    fontSize: "x-small",
+    padding: "0 0 2px 10px",
+    width: "35%",
+    boxShadow:
+      "rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px",
+  },
+  applyButton: {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "7px",
+    border: "1px solid transparent",
+    backgroundColor: "#82e8b8",
+    fontWeight: 650,
+    curson: "pointer",
+  },
+  referralButton: {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "7px",
+    border: "1px solid transparent",
+    backgroundColor: "#4228c7",
+    color: "white",
+    curson: "pointer",
+  },
+};
+
+export const HomePageStyles = {
+  parentContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "80%",
+  },
+  filtersContainer: {
+    gap: "10px",
+    display: "flex",
+    flexDirection: "row",
+    margin: "50px 0 50px 0",
+    justifyContent: "center",
+  },
+  cardsContainer: {
+    display: "grid",
+    placeItems: "center",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    width: "100%",
+  },
+};

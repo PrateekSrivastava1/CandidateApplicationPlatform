@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import { getJobOpeningsData } from "./api";
 import Filters from "../../components/Filters";
 import { getFilteredData } from "../../utils";
+import { HomePageStyles } from "../../constants";
 
 const HomePage = () => {
   const [jobData, setJobData] = useState([]);
@@ -52,44 +53,16 @@ const HomePage = () => {
     setFilteredData(getFilteredData(jobData, selectedFilters));
   }, [selectedFilters, jobData]);
 
-  // console.log("filteredData: ", filteredData);
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingTop: "50px",
-        paddingBottom: "50px",
-        flexDirection: "column",
-      }}
-    >
-      {/* ---------------filters-------------- */}
-
-      <div
-        style={{
-          gap: "10px",
-          display: "flex",
-          flexDirection: "row",
-          margin: "50px 0 50px 0",
-          // width: "100%",
-        }}
-      >
+    <div style={HomePageStyles.parentContainer}>
+      <div style={HomePageStyles.filtersContainer}>
         <Filters
           selectedFilters={selectedFilters}
           setSelectedFilters={setSelectedFilters}
         />
       </div>
 
-      {/* ------------------------------------- */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-        }}
-      >
+      <div style={HomePageStyles.cardsContainer}>
         {filteredData.map((job, index) => (
           <Card
             key={index}

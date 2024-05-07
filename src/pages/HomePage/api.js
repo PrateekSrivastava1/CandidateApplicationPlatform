@@ -8,6 +8,7 @@ export const getJobOpeningsData = async (offset) => {
     abortController.abort();
   }
 
+  // using abort controller to make api calls efficiently
   abortController = new AbortController();
 
   const { signal } = abortController;
